@@ -38,9 +38,28 @@ class Calendar {
 let calendar = new Calendar();
 console.log(calendar.getCurrentModel());
 
-document.querySelectorAll('.calendar_cell').forEach(el => el.addEventListener('click', e => {
+let popover = null;
+let activeCell = null;
+document.querySelector('.calendar_body').addEventListener('click', e => {
+    if (activeCell){
+        activeCell.classList.remove('calendar_cell-active');
+    }
 
-    document.body.insertAdjacentHTML("beforeend", `<div class="calendar_popover calendar_popover-lt" style="left: ${e.clientX}px; top:${e.clientY}px">
+    activeCell = e.target;
+    while (!activeCell.matches('.calendar_cell')) {
+        if (activeCell === document.body) {
+            return;
+        }
+        activeCell = activeCell.parentNode;
+    }
+
+    activeCell.classList.add('calendar_cell-active');
+
+    if (popover && popover.parentNode) {
+        popover.parentNode.removeChild(popover);
+    }
+    popover = document.createElement(`div`);
+    popover.innerHTML = `<div class="calendar_popover calendar_popover-lt" style="left: ${e.clientX}px; top:${e.clientY}px">
                 <form>
                     <div>
                         <input name="name" type="text"/>
@@ -53,5 +72,9 @@ document.querySelectorAll('.calendar_cell').forEach(el => el.addEventListener('c
                     </div>
                     <button>Сохранить</button>
                 </form>
-            </div>`)
-}));
+            </div>`;
+    popover = popover.firstChild;
+
+
+    document.body.appendChild(popover);
+});
