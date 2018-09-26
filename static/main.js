@@ -84,11 +84,12 @@ document.querySelector('.calendar_body').addEventListener('click', e => {
 });
 
 document.addEventListener('scroll', redraw);
-document.addEventListener('resize', redraw);
+window.addEventListener('resize', redraw);
 
 function redraw() {
     if (popover && activeCell) {
         const boundRect = activeCell.getBoundingClientRect();
-        popover.style = `left: ${boundRect.right}px; top:${(boundRect.top)}px`;
+        console.log(boundRect);
+        popover.style = `left: ${window.scrollX + boundRect.right}px; top:${window.scrollY + boundRect.top}px`;
     }
 }
