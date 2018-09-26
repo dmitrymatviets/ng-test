@@ -41,7 +41,7 @@ console.log(calendar.getCurrentModel());
 let popover = null;
 let activeCell = null;
 document.querySelector('.calendar_body').addEventListener('click', e => {
-    if (activeCell){
+    if (activeCell) {
         activeCell.classList.remove('calendar_cell-active');
     }
 
@@ -55,11 +55,12 @@ document.querySelector('.calendar_body').addEventListener('click', e => {
 
     activeCell.classList.add('calendar_cell-active');
 
+
     if (popover && popover.parentNode) {
         popover.parentNode.removeChild(popover);
     }
     popover = document.createElement(`div`);
-    popover.innerHTML = `<div class="calendar_popover calendar_popover-lt" style="left: ${e.clientX}px; top:${e.clientY}px">
+    popover.innerHTML = `<div class="calendar_popover calendar_popover-lt">
                 <form>
                     <div>
                         <input name="name" type="text"/>
@@ -70,11 +71,24 @@ document.querySelector('.calendar_body').addEventListener('click', e => {
                     <div>
                         <input name="name2" type="text"/>
                     </div>
+                    <div>
+                        <textarea></textarea>
+                    </div>
                     <button>Сохранить</button>
                 </form>
             </div>`;
     popover = popover.firstChild;
-
-
     document.body.appendChild(popover);
+
+    redraw();
 });
+
+document.addEventListener('scroll', redraw);
+document.addEventListener('resize', redraw);
+
+function redraw() {
+    if (popover && activeCell) {
+        const boundRect = activeCell.getBoundingClientRect();
+        popover.style = `left: ${boundRect.right}px; top:${(boundRect.top)}px`;
+    }
+}

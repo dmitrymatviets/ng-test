@@ -1,0 +1,22 @@
+{
+  "name": "ng-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmitrymatviets/ng-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmitrymatviets/ng-test/issues"
+  },
+  "homepage": "https://github.com/dmitrymatviets/ng-test#readme",
+  "dependencies": {
+    "@angular/compiler": "^6.1.8"
+  }
+}
