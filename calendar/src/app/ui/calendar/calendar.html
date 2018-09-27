@@ -1,0 +1,23 @@
+<div class="app">
+  <div class="toolbar">
+    <div class="toolbar_group toolbar_group-left">
+      <button class="toolbar_btn">Добавить</button>
+      <button class="toolbar_btn">Обновить</button>
+    </div>
+    <div class="toolbar_group toolbar_group-right">
+      <input class="toolbar_input" type="text" placeholder="Поиск"/>
+    </div>
+  </div>
+  <div class="calendar">
+    <div class="calendar_controls">
+      <button class="calendar_btn" (click)="prevMonth()"><</button>
+      <span>{{model.monthName}} {{model.year}}</span>
+      <button class="calendar_btn" (click)="nextMonth()">></button>
+      <button class="calendar_btn">Сегодня</button>
+    </div>
+    <div class="calendar_body">
+      <div class="calendar_cell"  *ngFor='let item of model.days'>{{item.day}} {{item.month}}, {{item.dayOfWeek | lowercase}}</div>
+    </div>
+
+  </div>
+</div>

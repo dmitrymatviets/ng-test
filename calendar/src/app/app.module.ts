@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { Calendar } from './calendar/calendar';
+import { Calendar } from './ui/calendar/calendar';
 
 @NgModule({
   declarations: [
